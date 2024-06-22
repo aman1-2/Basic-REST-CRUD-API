@@ -105,3 +105,18 @@ When a client sends data in an HTTP request, it's often included in the body of 
                 success: true
             });
         });
+
+---
+<br><br>
+---
+
+# *Middlewares*
+- Middlewares are the functions that has access to the request  object, response object and the next middleware function.
+
+- Middleware are basically used for doing the extra purpose work before reaching the controllers like authentication and authirisation.
+
+- If we just don't call the next() function in that case the next middleware won't be called and it will gey halted at that position.
+
+- Now let's say we want to use any one middleware with each of the route then one of the way to do is by writting that middleware with each route manually and the other way is by calling that middleware with the `use` function of app.
+
+        app.use(<middleware-name>); ->eventually it will be called by each of the route.

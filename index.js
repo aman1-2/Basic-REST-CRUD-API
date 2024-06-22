@@ -19,8 +19,22 @@ app.listen(PORT, () => {
 //Mimic the Db using an array.
 let blogsList = []; //Initalized an empty array.
 
+//A middleware 
+function logger(req, res, next){
+    console.log(req.url);
+    console.log(req.body);
+    next();
+}
+
+function isAuthenticated(req, res, next){
+    console.log("User is Authenticated");
+    next();
+}
+
+
 //This API is Extracting every blogs present in the array.
-app.get('/blogs', (req, res) => {
+//Here we are going to test our middleware which is being created.
+app.get('/blogs', logger, isAuthenticated, (req, res) => {
     console.log(req.body); //Since nothing is send inside req.body hence it gives undefined.
     return res.status(200).json({
         data: blogsList,
